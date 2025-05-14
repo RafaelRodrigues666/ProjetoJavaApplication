@@ -42,8 +42,8 @@ public class FornecedorDAO {
                 stmt.setString(6, objFornecedor.getInscricaoEstadual());
                 stmt.setString(7, objFornecedor.getNomeRepresentante());
                 stmt.setString(8, objFornecedor.getCondicoesPagamento());
-                stmt.setString(8, objFornecedor.getPrazoMedioEntrega());
-                stmt.setString(8, objFornecedor.getStatusFornecimento());
+                stmt.setString(9, objFornecedor.getPrazoMedioEntrega());
+                stmt.setString(10, objFornecedor.getStatusFornecimento());
                 System.out.println("Executa");
                 stmt.execute();
                 stmt.close();

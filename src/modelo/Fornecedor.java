@@ -23,8 +23,7 @@ public class Fornecedor {
     private String prazoMedioEntrega;
     private String statusFornecimento;
     
-    private String[] colunas = new String[]{"ID", "NOME", "CNPJ", "TELEFONE", "RAZAOSOCIAL", "NOMEFANTASIA",
-    "INSCRICAOESTADUAL", "NOMEREPRESENTANTE", "CONFICOESPAGAMENTO" , "PRAZAMEDIOENTREGA", "STATUSFORNECIMENTO"};
+    private String[] colunas = new String[]{"ID", "NOME", "CNPJ", "NOMEFANTASIA", "TELEFONE"};
 
     public Fornecedor() {
     }
