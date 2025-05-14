@@ -16,8 +16,7 @@ public class Produto {
     private String unidadeMedida;
     
     
-    private String[] colunas = new String[]{"ID", "DESCRICAO", "PRECOCUSTO", "PRECOVENDA", "SKU", "CATEGORIA",
-    "MARCA", "MODELO", "UNIDADEMEDIDA"};
+    private String[] colunas = new String[]{"ID", "DESCRICAO", "PRECOCUSTO", "PRECOVENDA", "SKU", "CATEGORIA"};
 
     public Produto() {
     }

@@ -29,7 +29,7 @@ public class ProdutoDAO {
             String sql;
             System.out.println("Entra ");
             if (objProduto.getId() == null) {
-                sql = "INSERT INTO produto(descricao,precoCusto,precoVenda) VALUES(?,?,?)";
+                sql = "INSERT INTO produto(descricao,precoCusto,precoVenda,sku,categoria,marca,modelo,unidadeMedida) VALUES(?,?,?,?,?,?,?,?)";
                 System.out.println("Entra SALVAR");
                 
                 PreparedStatement stmt = c.con().prepareStatement(sql);
@@ -50,7 +50,7 @@ public class ProdutoDAO {
 
             } else {
                 System.out.println("Entra UPDATE");
-                sql = "UPDATE produto SET descricao = ?, precoCusto = ?, precoVenda = ? WHERE produto.id = ?";
+                sql = "UPDATE produto SET descricao = ?, precoCusto = ?, precoVenda = ?, sku = ?, categoria = ?, marca = ?, modelo = ?, unidadeMedida = ? WHERE produto.id = ?";
 
                 PreparedStatement stmt = c.con().prepareStatement(sql);
 

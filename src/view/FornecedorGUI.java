@@ -113,26 +113,46 @@ public class FornecedorGUI extends javax.swing.JFrame {
         });
 
         btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         btnAtualizar.setText("Atualizar");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
 
         btnDeletar.setText("Deletar");
+        btnDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeletarActionPerformed(evt);
+            }
+        });
 
         btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Nome", "CNPJ", "Nome Fantasia", "Telefone"
+                "ID", "Nome", "CNPJ", "Nome Fantasia", "Telefone"
             }
         ));
         jScrollPane1.setViewportView(Table);
@@ -299,6 +319,72 @@ public class FornecedorGUI extends javax.swing.JFrame {
         adicionarTable();
         
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        // TODO add your handling code here:
+        txtNome.setText("");
+        txtCnpj.setText("");
+        txtTelefone.setText("");
+        txtRazaoSocial.setText("");
+        txtNomeFantasia.setText("");
+        txtInscricaoEstadual.setText("");
+        txtNomeRepresentante.setText("");
+        txtCondicoesPagamento.setText("");
+        txtPrazoMedioEntrega.setText("");
+        txtStatusFornecimento.setText("");
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeletarActionPerformed
+        // TODO add your handling code here:
+        if (Table.getSelectedRow() > -1) {
+
+            int idSelecionado = Integer.parseInt(listFornecedor.get(Table.getSelectedRow()).getId());
+
+            new FornecedorDAO().deletar(idSelecionado);
+            JOptionPane.showMessageDialog(this, "Deletado Com Sucesso!");
+            listFornecedor = new FornecedorDAO().listarTodos();
+
+            adicionarTable();
+
+        }
+    }//GEN-LAST:event_btnDeletarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        if (txtCnpj.getText().trim().equals("") && txtRazaoSocial.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(this, "Nenhum produto encontrado!");
+            return;
+        }
+
+        if (txtCnpj.getText().equals("")) {
+            String cnpj = txtCnpj.getText();
+            listFornecedor = new FornecedorDAO().buscar(cnpj, "cnpj");
+            if (listFornecedor.size() > 0) {
+                adicionarTable();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Nenhum produto encontrado!");
+            }
+        }
+
+        if (txtRazaoSocial.getText().equals("")) {
+            String razaoSocial = txtRazaoSocial.getText();
+            listFornecedor = new FornecedorDAO().buscar(razaoSocial, "razaoSocial");
+            if (listFornecedor.size() > 0) {
+                adicionarTable();
+                return;
+            } else {
+                JOptionPane.showMessageDialog(this, "Nenhum produto encontrado!");
+            }
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        // TODO add your handling code here:
+        listFornecedor = new FornecedorDAO().listarTodos();
+
+        adicionarTable();
+    }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
