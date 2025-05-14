@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import modelo.Produto;
+import modelo.Fornecedor;
 
 /**
  *
@@ -22,26 +22,28 @@ import modelo.Produto;
 public class FornecedorDAO {
     Conexao c = new Conexao();
     
-    public void salvar(Produto objProduto) {
+    public void salvar(Fornecedor objFornecedor) {
         
         
         try {
             String sql;
             System.out.println("Entra ");
-            if (objProduto.getId() == null) {
-                sql = "INSERT INTO produto(descricao,precoCusto,precoVenda) VALUES(?,?,?)";
+            if (objFornecedor.getId() == null) {
+                sql = "INSERT INTO fornecedor(nome,cnpj,telefone,razaoSocial,nomeFantasia,inscricaoEstadual,nomeRepresentante,condicoesPagamento,prazoMedioEntrega,statusFornecimento) VALUES(?,?,?,?,?,?, ?,?,?,?)";
                 System.out.println("Entra SALVAR");
                 
                 PreparedStatement stmt = c.con().prepareStatement(sql);
 
-                stmt.setString(1, objProduto.getDescricao());
-                stmt.setString(2, objProduto.getPrecoCusto());
-                stmt.setString(3, objProduto.getPrecoVenda());
-                stmt.setString(4, objProduto.getSku());
-                stmt.setString(5, objProduto.getCategoria());
-                stmt.setString(6, objProduto.getMarca());
-                stmt.setString(7, objProduto.getModelo());
-                stmt.setString(8, objProduto.getUnidadeMedida());
+                stmt.setString(1, objFornecedor.getNome());
+                stmt.setString(2, objFornecedor.getCnpj());
+                stmt.setString(3, objFornecedor.getTelefone());
+                stmt.setString(4, objFornecedor.getRazaoSocial());
+                stmt.setString(5, objFornecedor.getNomeFantasia());
+                stmt.setString(6, objFornecedor.getInscricaoEstadual());
+                stmt.setString(7, objFornecedor.getNomeRepresentante());
+                stmt.setString(8, objFornecedor.getCondicoesPagamento());
+                stmt.setString(8, objFornecedor.getPrazoMedioEntrega());
+                stmt.setString(8, objFornecedor.getStatusFornecimento());
                 System.out.println("Executa");
                 stmt.execute();
                 stmt.close();
@@ -50,19 +52,21 @@ public class FornecedorDAO {
 
             } else {
                 System.out.println("Entra UPDATE");
-                sql = "UPDATE produto SET descricao = ?, precoCusto = ?, precoVenda = ? WHERE produto.id = ?";
+                sql = "UPDATE fornecedor SET nome = ?, cnpj = ?, telefone = ?, razaoSocial = ?, nomeFantasia = ?, inscricaoEstadual = ?, nomeRepresentante = ?, condicoesPagamento = ?, prazoMedioEntrega = ?, statusFornecimento = ? WHERE fornecedor.id = ?";
 
                 PreparedStatement stmt = c.con().prepareStatement(sql);
 
-                stmt.setString(9, objProduto.getId());
-                stmt.setString(1, objProduto.getDescricao());
-                stmt.setString(2, objProduto.getPrecoCusto());
-                stmt.setString(3, objProduto.getPrecoVenda());
-                stmt.setString(4, objProduto.getSku());
-                stmt.setString(5, objProduto.getCategoria());
-                stmt.setString(6, objProduto.getMarca());
-                stmt.setString(7, objProduto.getModelo());
-                stmt.setString(8, objProduto.getUnidadeMedida());
+                stmt.setString(11, objFornecedor.getId());
+                stmt.setString(1, objFornecedor.getNome());
+                stmt.setString(2, objFornecedor.getCnpj());
+                stmt.setString(3, objFornecedor.getTelefone());
+                stmt.setString(4, objFornecedor.getRazaoSocial());
+                stmt.setString(5, objFornecedor.getNomeFantasia());
+                stmt.setString(6, objFornecedor.getInscricaoEstadual());
+                stmt.setString(7, objFornecedor.getNomeRepresentante());
+                stmt.setString(8, objFornecedor.getCondicoesPagamento());
+                stmt.setString(9, objFornecedor.getPrazoMedioEntrega());
+                stmt.setString(10, objFornecedor.getStatusFornecimento());
                 stmt.execute();
                 stmt.close();
                 c.con().close();
@@ -74,12 +78,12 @@ public class FornecedorDAO {
         }
     }
 
-    public  List<Produto> buscar(String objProduto, String tipo) {
-        List<Produto> list = new ArrayList<>();
+    public  List<Fornecedor> buscar(String objFornecedor, String tipo) {
+        List<Fornecedor> list = new ArrayList<>();
         try {
             String sql = "";
-            if (tipo.equals("descricao")) {
-                sql = "SELECT * FROM produto WHERE descricao LIKE '%" + objProduto + "%' ";
+            if (tipo.equals("nome")) {
+                sql = "SELECT * FROM fornecedor WHERE nome LIKE '%" + objFornecedor + "%' ";
 
             }
 
@@ -88,16 +92,18 @@ public class FornecedorDAO {
 
             while (rs.next()) {
 
-                list.add(new Produto(
+                list.add(new Fornecedor(
                     rs.getString("id"),
-                    rs.getString("descricao"),
-                    rs.getString("precoCusto"),
-                    rs.getString("precoVenda"),
-                    rs.getString("sku"),
-                    rs.getString("categoria"),
-                    rs.getString("marca"),    
-                    rs.getString("modelo"),
-                    rs.getString("unidadeMedida")
+                    rs.getString("nome"),
+                    rs.getString("cnpj"),
+                    rs.getString("telefone"),
+                    rs.getString("razaoSocial"),
+                    rs.getString("nomeFantasia"),
+                    rs.getString("inscricaoEstadual"),    
+                    rs.getString("nomeRepresentante"),
+                    rs.getString("condicoesPagamento"),
+                    rs.getString("prazoMedioEntrega"),
+                    rs.getString("statusFornecimento")
                 ));
 
             }
@@ -118,7 +124,7 @@ public class FornecedorDAO {
         try {
             String sql;
             if (id != 0) {
-                sql = "DELETE FROM produto WHERE id = ?";
+                sql = "DELETE FROM fornecedor WHERE id = ?";
                 PreparedStatement stmt = c.con().prepareStatement(sql);
 
                 stmt.setString(1, ""+ id);
@@ -131,26 +137,28 @@ public class FornecedorDAO {
         }
     }
 
-    public List<Produto> listarTodos() {
+    public List<Fornecedor> listarTodos() {
         try {
 
-            List<Produto> list = new ArrayList();
+            List<Fornecedor> list = new ArrayList();
 
-            PreparedStatement ps = c.con().prepareStatement("SELECT * FROM produto");
+            PreparedStatement ps = c.con().prepareStatement("SELECT * FROM fornecedor");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
-                list.add(new Produto(
+                list.add(new Fornecedor(
                     rs.getString("id"),
-                    rs.getString("descricao"),
-                    rs.getString("precoCusto"),
-                    rs.getString("precoVenda"),
-                    rs.getString("sku"),
-                    rs.getString("categoria"),
-                    rs.getString("marca"),    
-                    rs.getString("modelo"),
-                    rs.getString("unidadeMedida")
+                    rs.getString("nome"),
+                    rs.getString("cnpj"),
+                    rs.getString("telefone"),
+                    rs.getString("razaoSocial"),
+                    rs.getString("nomeFantasia"),
+                    rs.getString("inscricaoEstadual"),    
+                    rs.getString("nomeRepresentante"),
+                    rs.getString("condicoesPagamento"),
+                    rs.getString("prazoMedioEntrega"),
+                    rs.getString("statusFornecimento")
                 ));
 
             }
