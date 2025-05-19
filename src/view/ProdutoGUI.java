@@ -95,6 +95,8 @@ public class ProdutoGUI extends javax.swing.JFrame {
             }
         });
 
+        btnBuscar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBuscar1.setForeground(java.awt.Color.magenta);
         btnBuscar1.setText("Atualizar Lista");
         btnBuscar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +115,8 @@ public class ProdutoGUI extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("CADASTRO DE PRODUTOS");
 
+        btnSalvar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnSalvar.setForeground(new java.awt.Color(0, 255, 0));
         btnSalvar.setText("SALVAR");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +130,8 @@ public class ProdutoGUI extends javax.swing.JFrame {
             }
         });
 
+        btnLimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnLimpar.setForeground(new java.awt.Color(0, 255, 255));
         btnLimpar.setText("LIMPAR");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,6 +142,8 @@ public class ProdutoGUI extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel2.setText("ID");
 
+        btnDeletar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnDeletar.setForeground(new java.awt.Color(255, 0, 0));
         btnDeletar.setText("DELETAR");
         btnDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,6 +154,8 @@ public class ProdutoGUI extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         jLabel3.setText("Descrição");
 
+        btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(0, 0, 255));
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
