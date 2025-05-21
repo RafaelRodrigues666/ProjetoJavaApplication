@@ -48,7 +48,7 @@ public class UsuarioDAO {
 
             } else {
                 System.out.println("Entra UPDATE");
-                sql = "UPDATE usuario SET nome = ?, cpf = ?, email = ?, telefone = ? WHERE usuario.id = ?";
+                sql = "UPDATE usuario SET nome = ?, cpf = ?, dataNascimento = ?, email = ?, telefone = ?, funcao = ? WHERE usuario.id = ?";
 
                 PreparedStatement stmt = c.con().prepareStatement(sql);
 

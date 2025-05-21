@@ -5,11 +5,11 @@ public class Usuario {
     private String id;
     private String nome;
     private String cpf;
-    private String dataNascimento;
     private String email;
-    private String telefone;
     private String funcao;
-    private String[] colunas = new String[]{"ID", "NOME", "CPF", "EMAIL", "TELEFONE"};
+    private String dataNascimento;
+    private String telefone;
+    private String[] colunas = new String[]{"ID","NOME","CPF","FUNCAO","EMAIL"};
 
     public Usuario() {
     }
@@ -84,14 +84,14 @@ public class Usuario {
     }
     
     
-    public Usuario(String id, String nome, String cpf, String email, String telefone, String funcao, String dataNascimento) {
+    public Usuario(String id, String nome, String cpf, String dataNascimento, String email, String telefone, String funcao) {
         this.id = id;
         this.nome = nome;
         this.cpf = cpf;
+        this.dataNascimento = dataNascimento;
         this.email = email;
         this.telefone = telefone;
         this.funcao = funcao;
-        this.dataNascimento = dataNascimento;
     }
     
 }

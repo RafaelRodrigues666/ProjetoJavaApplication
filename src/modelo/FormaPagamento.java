@@ -1,9 +1,5 @@
 package modelo;
 
-/**
- *
- * @author Senai
- */
 public class FormaPagamento {
     private String id;
     private String formaPagamento;
@@ -11,6 +7,7 @@ public class FormaPagamento {
     private String codigoFP;
     private String tipoPagamento;
     private String categoria;
+    
     private String[] colunas = new String[]{"ID", "FORMAPAGMENTO", "VALORTOTAL", "CODIGOFP", "TIPOPAGAMENTO", "CATEGORIA"};
 
     public FormaPagamento() {
